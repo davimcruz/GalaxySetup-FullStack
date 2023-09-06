@@ -1,9 +1,26 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 function NotepadScript() {
   const [pages, setPages] = useState([]);
   const [currentTabIndex, setCurrentTabIndex] = useState(-1);
   const maxTabs = 7;
+
+  // Carregar dados do localStorage quando o componente for montado
+  useEffect(() => {
+    const savedPages = JSON.parse(localStorage.getItem('notepadPages'));
+    if (savedPages) {
+      setPages(savedPages.pages);
+      setCurrentTabIndex(savedPages.currentTabIndex);
+    }
+  }, []);
+
+  // Salvar dados no localStorage sempre que as abas ou o índice atual mudarem
+  useEffect(() => {
+    localStorage.setItem(
+      'notepadPages',
+      JSON.stringify({ pages, currentTabIndex })
+    );
+  }, [pages, currentTabIndex]);
 
   const createNewPage = () => {
     if (pages.length >= maxTabs) {
