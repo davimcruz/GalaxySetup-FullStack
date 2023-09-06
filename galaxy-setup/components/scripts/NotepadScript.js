@@ -49,7 +49,6 @@ function NotepadScript() {
 
   const handleTabClick = (e, index) => {
     if (e.button === 1) {
-      // Verifique se o botão do meio foi clicado (button === 1)
       closeTab(index);
     } else {
       e.preventDefault();
