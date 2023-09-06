@@ -1,10 +1,10 @@
 import { useRouter } from 'next/router';
 
-export default function Notepad() {
+export default function Setup() {
 
     const router = useRouter();
     if (typeof window !== 'undefined') {
-        router.push('/notepad');
+        router.push('/setup');
     }
 
     return <></>;
